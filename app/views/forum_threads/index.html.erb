@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+
+		<% @threads.each do |t| %>
+			<div class="thread">
+				<h4><%= t.title.titleize %></h4>
+				<div class="meta">
+					<%= t.created_at.strftime("%d %B %Y") %> oleh <%= t.user.name %>
+				</div>
+				<div class="content">
+					<%= t.content %>
+				</div>
+				<div class="count">
+					<%= t.forum_posts.count %>
+				</div>
+				<div class="clear">	</div>
+			</div>
+		<% end %>		
+	</div>
+</div>
