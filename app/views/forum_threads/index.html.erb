@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
+		<%= link_to "Buat Diskusi", new_forum_thread_path, class: 'btn btn-primary' %>
 
 		<% @threads.each do |t| %>
 			<div class="thread">
@@ -11,7 +12,7 @@
 					<%= t.content %>
 				</div>
 				<div class="count">
-					<%= t.forum_posts.count %>
+					<%= t.forum_posts_count %>
 				</div>
 				<div class="clear">	</div>
 			</div>
