@@ -8,7 +8,7 @@
 			<div class="content">
 				<%= @thread.content %>
 			</div>
-			
+
 		</div>
 		<% if @thread.forum_posts.any? %>
 			<% @thread.forum_posts.each do |p| %>
@@ -19,23 +19,33 @@
 					<div class="content">
 						<%= p.content %>
 					</div>
-					
+
 				</div>
 
 			<% end %>
 		<% else %>
 			<div>
-				Jadilah yang pertama melakukan tanggapan.				
+				Jadilah yang pertama melakukan tanggapan.
 			</div>
 		<% end %>
-		<%= form_for [@thread, @post] do |f| %>
-			<div class="form-group">
-				<%= f.label :content%>
-				<%= f.text_area :content, rows: 10, class: 'form-control'%>
+		<% if @post.errors.any? %>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<% @post.errors.full_messages.each do |error| %>
+					<span><%= error %></span><br/>
+				<% end %>
 			</div>
-			<div class="form-group">
-				<%= f.submit "Buat", class: "btn btn-primary form-control" %>
-			</div>
+		<% end %>
+		<% if user_signed_in? %>
+			<%= form_for [@thread, @post] do |f| %>
+				<div class="form-group">
+					<%= f.label :content%>
+					<%= f.text_area :content, rows: 10, class: 'form-control'%>
+				</div>
+				<div class="form-group">
+					<%= f.submit "Buat", class: "btn btn-primary form-control" %>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

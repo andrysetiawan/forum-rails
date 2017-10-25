@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020020915) do
+ActiveRecord::Schema.define(version: 20171025090639) do
 
   create_table "forum_posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20171020020915) do
   create_table "forum_threads", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
     t.text "content"
-    t.integer "sticky_order"
+    t.integer "sticky_order", default: 100
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
