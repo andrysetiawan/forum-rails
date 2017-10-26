@@ -8,6 +8,9 @@
 			<div class="content">
 				<%= @thread.content %>
 			</div>
+			<div class="edit">
+				<%= link_to 'Edit', edit_forum_thread_path(@thread), class: 'btn' %>
+			</div>
 
 		</div>
 		<% if @thread.forum_posts.any? %>

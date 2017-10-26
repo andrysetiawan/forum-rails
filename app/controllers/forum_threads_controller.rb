@@ -21,6 +21,25 @@ class ForumThreadsController < ApplicationController
 			render 'new'
 		end
 	end
+	def edit
+		@thread = ForumThread.find(params[:id])
+	end
+	def update
+		@thread = ForumThread.find(params[:id])
+
+		if @thread.update(resource_params)
+			redirect_to forum_thread_path(@thread)
+		else
+			render 'new'
+		end
+	end
+
+	def pinit
+		@thread = ForumThread.find(params[:id])
+		@thread.pinit!
+		redirect_to root_path
+	end
+
 	private
 	def resource_params
 		params.require(:forum_thread).permit(:title,:content)
