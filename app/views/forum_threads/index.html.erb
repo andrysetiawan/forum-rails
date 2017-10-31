@@ -15,7 +15,7 @@
 					<%= I18n.l(t.created_at.to_date) %> oleh <%= t.user.name %>
 				</div>
 				<div class="content">
-					<%= t.content %>
+					<%= truncate t.content, length: 100 %>
 				</div>
 				<div class="action">
 					<%=link_to 'Pin it', pinit_forum_thread_path(t), class: 'btn', method: :put %>

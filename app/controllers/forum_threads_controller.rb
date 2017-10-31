@@ -5,7 +5,7 @@ class ForumThreadsController < ApplicationController
 		@threads = ForumThread.order(sticky_order: :asc).order(id: :desc)
 	end
 	def show
-		@thread = ForumThread.find(params[:id])
+		@thread = ForumThread.friendly.find(params[:id])
 		@post = ForumPost.new
 	end
 	def new
@@ -21,12 +21,16 @@ class ForumThreadsController < ApplicationController
 			render 'new'
 		end
 	end
+
 	def edit
-		@thread = ForumThread.find(params[:id])
+		@thread = ForumThread.friendly.find(params[:id])
 		authorize @thread
+
 	end
+
 	def update
-		@thread = ForumThread.find(params[:id])
+		@thread = ForumThread.friendly.find(params[:id])
+		authorize @thread
 
 		if @thread.update(resource_params)
 			redirect_to forum_thread_path(@thread)
@@ -36,7 +40,7 @@ class ForumThreadsController < ApplicationController
 	end
 
 	def pinit
-		@thread = ForumThread.find(params[:id])
+		@thread = ForumThread.friendly.find(params[:id])
 		@thread.pinit!
 		redirect_to root_path
 	end
