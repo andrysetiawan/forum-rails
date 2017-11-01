@@ -1,7 +1,7 @@
 class ForumPostsController < ApplicationController
 	before_action :authenticate_user!, only: [:create]
 	def create
-		@thread = ForumThread.find(params[:forum_thread_id])
+		@thread = ForumThread.friendly.find(params[:forum_thread_id])
 		@post = ForumPost.new(resource_params)
 
 		@post.forum_thread = @thread

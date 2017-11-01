@@ -21,10 +21,18 @@ class ForumThreadsController < ApplicationController
 			render 'new'
 		end
 	end
-
 	def edit
 		@thread = ForumThread.friendly.find(params[:id])
 		authorize @thread
+	end
+
+	def destroy
+		@thread = ForumThread.friendly.find(params[:id])
+		authorize @thread
+
+		@thread.destroy
+
+		redirect_to root_path, notice: 'Thread sudah dihapus'
 
 	end
 

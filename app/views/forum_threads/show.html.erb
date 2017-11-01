@@ -11,6 +11,7 @@
 			<% if policy(@thread).edit? %>
 				<div class="edit">
 					<%= link_to 'Edit', edit_forum_thread_path(@thread), class: 'btn' %>
+					<%= link_to 'Delete', forum_thread_path(@thread), method: :delete, data: {confirm: "Yakin dihapus"}, class: 'btn' %>
 				</div>
 			<% end %>
 
