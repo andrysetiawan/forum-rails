@@ -17,7 +17,7 @@
 
 		</div>
 		<% if @thread.forum_posts.any? %>
-			<% @thread.forum_posts.each do |p| %>
+			<% @posts.each do |p| %>
 				<div class="thread">
 					<div class="meta">
 						<%= I18n.l(p.created_at.to_date) %> oleh <%= p.user.name %>
@@ -29,6 +29,7 @@
 				</div>
 
 			<% end %>
+			<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 		<% else %>
 			<div>
 				Jadilah yang pertama melakukan tanggapan.
